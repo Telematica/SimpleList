@@ -1,8 +1,9 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, delay } from 'redux-saga/effects'
 import axios from 'axios';
 
 function* fetchUsers(action) {
    try {
+      yield delay(1500);
       const people = yield call(() => axios.get('https://randomuser.me/api/?results=20'));
       yield put({type: "USER_FETCH_SUCCEEDED", people });
    } catch (e) {
